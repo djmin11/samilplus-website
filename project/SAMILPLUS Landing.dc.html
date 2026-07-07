@@ -7,7 +7,7 @@
 </head>
 <body>
 <x-dc>
-<helmet data-dc-atomics>
+<helmet data-dc-atomics="">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <style>
   body { margin: 0; background: #f5f6f8; }
@@ -34,6 +34,9 @@
   </header>
 
   <!-- HERO -->
+  
+
+  <!-- CATALOG -->
   <section id="top" data-screen-label="Hero" style="position:relative; padding:{{ padHero }}; display:flex; flex-direction:column; gap:{{ gapLg }}; overflow:hidden;">
 
     <sc-if value="{{ isCleanHero }}" hint-placeholder-val="{{ true }}">
@@ -61,9 +64,7 @@
         Backed by deep fabric expertise and strategic analysis — 15 years growing alongside global brands across sport, outdoor, and casual wear.
       </p>
       <div style="display:flex; gap:12px; align-items:center;">
-        <a href="#catalog" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:{{ accent }}; color:#fff; font-size:16px; font-weight:700; padding:16px 28px; border-radius:999px; width:fit-content;" style-hover="background:{{ accentDark }};">
-          View catalog →
-        </a>
+        
         <a href="#factories" style="color:#14171f; font-weight:600; font-size:16px; border-bottom:2px solid rgba(20,23,31,0.25); padding-bottom:2px;" style-hover="border-color:{{ accent }}; color:{{ accent }};">
           View our factories
         </a>
@@ -73,35 +74,32 @@
     <div style="position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(20,23,31,0.08); border-radius:{{ cardRadius }}; overflow:hidden; margin-top:16px;">
       <div style="background:#f5f6f8; padding:22px 24px;">
         <div style="font-size:clamp(24px,3vw,34px); font-weight:800;">2011</div>
-        <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Founded as Hansun Plus, 15 years strong</div>
+        <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Founded as Hansun Plus, 15 years of experience</div>
       </div>
       <div style="background:#f5f6f8; padding:22px 24px;">
         <div style="font-size:clamp(24px,3vw,34px); font-weight:800;">15,000+</div>
         <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Skilled workers across Vietnam partner factories</div>
       </div>
       <div style="background:#f5f6f8; padding:22px 24px;">
-        <div style="font-size:clamp(24px,3vw,34px); font-weight:800;">4 Countries</div>
+        <div style="font-size:clamp(24px,3vw,34px); font-weight:800;">3 Countries</div>
         <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Korea · Japan · Vietnam network</div>
       </div>
     </div>
-  </section>
-
-  <!-- CATALOG -->
-  <section id="catalog" data-screen-label="Catalog" style="padding:{{ padSection }} clamp(20px,4vw,56px); display:flex; flex-direction:column; gap:{{ gapLg }};">
+  </section><section id="catalog" data-screen-label="Catalog" style="padding:{{ padSection }} clamp(20px,4vw,56px); display:flex; flex-direction:column; gap:{{ gapLg }};">
     <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;">
       <div>
         <div style="font-size: 15.5px; font-weight: 700; color: rgba(20,23,31,0.45); letter-spacing: 0.06em; margin-bottom: 8px">CATALOG</div>
-        <h2 style="margin:0; font-size:clamp(30px,4vw,48px); font-weight:800; letter-spacing:-0.02em;">Apparel Sample Catalog</h2>
-      </div>
-      <p style="margin:0; max-width:360px; font-size:16px; line-height:1.6; color:rgba(20,23,31,0.55);">
+        <h2 style="margin:0; font-size:clamp(30px,4vw,48px); font-weight:800; letter-spacing:-0.02em;">Apparel Catalogue</h2>
+      </div><p style="margin:0; max-width:360px; font-size:16px; line-height:1.6; color:rgba(20,23,31,0.55);">
         The full sample catalog is being prepared as a single PPT file. Once uploaded, you'll be able to download it directly below.
       </p>
+      
     </div>
 
     <div style="border:{{ cardBorder }}; border-radius:{{ cardRadius }}; padding:32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; background:#fff;">
       <div>
-        <div style="font-size:20px; font-weight:800;">Full Sample Catalog</div>
-        <div style="font-size:16px; color:rgba(20,23,31,0.5); margin-top:6px; line-height:1.5;">Woven & Knit · Casual · Sports — one PPT file covering the full product range</div>
+        <div style="font-size:20px; font-weight:800;">Apparel Catalogue</div>
+        
       </div>
       <a href="#" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:{{ accent }}; color:#fff; font-size:16px; font-weight:700; padding:14px 26px; border-radius:999px; width:fit-content;" style-hover="background:{{ accentDark }};">
         Download PPT ↓
@@ -268,9 +266,7 @@
         <div style="font-size: 15.5px; font-weight: 700; color: rgba(20,23,31,0.45); letter-spacing: 0.06em; margin-bottom: 8px">MANUFACTURING FACILITIES</div>
         <h2 style="margin:0; font-size:clamp(30px,4vw,48px); font-weight:800; letter-spacing:-0.02em;">Partner Factories</h2>
       </div>
-      <p style="margin:0; max-width:400px; font-size:16px; line-height:1.6; color:rgba(20,23,31,0.55);">
-        Currently 5 partner factories across Hanoi, Vietnam and Korea. More regions and factories will be added over time.
-      </p>
+      
     </div>
 
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:{{ gapMd }};">
@@ -328,7 +324,7 @@
       </div>
       <div>
         <div style="font-size:14.5px; font-weight:700; color:{{ sectionEyebrow }}; margin-bottom:8px;">VIETNAM BRANCH</div>
-        <div style="font-size:16px; color:{{ footerText75 }};">Hanoi Office · Ho Chi Minh Office · Ha Nam Office</div>
+        <div style="font-size:16px; color:{{ footerText75 }};">Hanoi Office · Ho Chi Minh Office</div>
       </div>
     </div>
 
