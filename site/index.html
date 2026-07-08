@@ -21,8 +21,20 @@
     <a href="#partners">Partners</a>
     <a href="#factories">Factories</a>
   </nav>
-  <a href="#contact" class="header-cta">Contact</a>
+  <div class="header-right">
+    <a href="#contact" class="header-cta" data-open-contact>Contact</a>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
+
+<div class="mobile-menu" hidden>
+  <a href="#catalog">Catalog</a>
+  <a href="#about">About</a>
+  <a href="#partners">Partners</a>
+  <a href="#factories">Factories</a>
+</div>
 
 <!-- HERO -->
 <section id="top" class="hero">
@@ -31,12 +43,12 @@
   <div class="badge-pill">EST. 2011 · KOREA · JAPAN · VIETNAM</div>
 
   <h1 class="hero-title">
-    Good clothes come from <span class="accent-text">good partnerships</span>
+    The partner behind <span class="accent-text">the brands you trust</span>
   </h1>
 
   <div class="hero-bottom">
     <p class="hero-desc">
-      Backed by deep fabric expertise and strategic analysis — 15 years growing alongside global brands across sport, outdoor, and casual wear.
+      15 years building technical apparel for global sport, outdoor, and casual brands.
     </p>
     <div class="hero-actions">
       <a href="#factories" class="link-underline">View our factories</a>
@@ -46,15 +58,15 @@
   <div class="stat-grid">
     <div class="stat-item">
       <div class="stat-value">2011</div>
-      <div class="stat-label">Founded as Hansun Plus, 15 years of experience</div>
+      <div class="stat-label">Founded in 2011 — 15 years in apparel manufacturing</div>
     </div>
     <div class="stat-item">
-      <div class="stat-value">15,000+</div>
-      <div class="stat-label">Skilled workers across Vietnam partner factories</div>
+      <div class="stat-value">13,000+</div>
+      <div class="stat-label">Skilled workers across our partner factories</div>
     </div>
     <div class="stat-item">
       <div class="stat-value">3 Countries</div>
-      <div class="stat-label">Korea · Japan · Vietnam network</div>
+      <div class="stat-label">Korea · Japan · Vietnam sourcing &amp; production network</div>
     </div>
   </div>
 </section>
@@ -64,20 +76,22 @@
   <div class="section-header-row">
     <div>
       <div class="section-label">CATALOG</div>
-      <h2 class="section-title">Apparel Catalogue</h2>
+      <h2 class="section-title">Apparel Catalog</h2>
     </div>
-    <p class="section-desc">
-      The full sample catalog is being prepared as a single PPT file. Once uploaded, you'll be able to download it directly below.
-    </p>
   </div>
 
   <div class="catalog-card">
-    <div>
-      <div class="catalog-card-title">Apparel Catalogue</div>
+    <div class="catalog-intro">
+      <div class="catalog-card-title">Request our catalog</div>
+      <div class="catalog-card-sub">Enter your email and we'll send the full apparel catalog to your inbox.</div>
     </div>
-    <div>
-      <a href="#" class="btn-download" aria-disabled="true" tabindex="-1" title="Coming soon">Download PPT ↓</a>
-      <div class="catalog-note">Coming soon</div>
+    <div class="catalog-form">
+      <div class="catalog-inputs">
+        <input type="text" id="req-company" placeholder="Company name" autocomplete="organization">
+        <input type="email" id="req-email" placeholder="your@email.com" autocomplete="email">
+        <button type="button" class="btn-request">Request Catalog →</button>
+      </div>
+      <div class="catalog-form-note" aria-live="polite"></div>
     </div>
   </div>
 </section>
@@ -90,9 +104,6 @@
       <div class="section-label on-dark">ABOUT US</div>
       <h2 class="section-title">Built season by season, since 2011</h2>
     </div>
-    <p class="about-body">
-      Samil Plus has grown into a manufacturing partner trusted by global brands, built on market analysis, strategic thinking, and deep fabric expertise.
-    </p>
   </div>
 
   <!-- journey timeline + offices -->
@@ -101,7 +112,7 @@
     <div>
       <div class="col-header">
         <div class="eyebrow">OUR JOURNEY</div>
-        <div class="meta">2011 — 2026</div>
+        <div class="meta meta-bright">2011 — 2026</div>
       </div>
       <div class="timeline">
         <div class="timeline-item">
@@ -252,7 +263,7 @@
     <div class="block-eyebrow">ORDER SHARE</div>
     <div class="order-grid">
       <div class="order-card">
-        <div class="donut" style="background:conic-gradient(var(--accent) 0deg 198deg, var(--section-track-25) 198deg 360deg);">
+        <div class="donut" data-deg="198">
           <div class="donut-inner"><span class="donut-pct">55%</span></div>
         </div>
         <div class="legend">
@@ -261,7 +272,7 @@
         </div>
       </div>
       <div class="order-card">
-        <div class="donut" style="background:conic-gradient(var(--accent) 0deg 216deg, var(--section-track-25) 216deg 360deg);">
+        <div class="donut" data-deg="216">
           <div class="donut-inner"><span class="donut-pct">60%</span></div>
         </div>
         <div class="legend">
@@ -270,7 +281,7 @@
         </div>
       </div>
       <div class="order-card">
-        <div class="donut" style="background:conic-gradient(var(--accent) 0deg 216deg, var(--section-track-25) 216deg 360deg);">
+        <div class="donut" data-deg="216">
           <div class="donut-inner"><span class="donut-pct">60%</span></div>
         </div>
         <div class="legend">
@@ -289,19 +300,41 @@
     <h2 class="section-title">Global Brand Partners</h2>
   </div>
 
-  <div class="logo-grid">
-    <div class="logo-tile"><img src="assets/logos/brand-saxx.png" alt="SAXX logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-tnf.png" alt="The North Face logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-newbalance.png" alt="New Balance logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-oakley.png" alt="Oakley logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-fanatics.png" alt="Fanatics logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-xgirl.png" alt="X-GIRL logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-voormi.png" alt="Voormi logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-radmor.png" alt="Radmor Golf logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-spao.png" alt="SPAO logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-columbia.png" alt="Columbia logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-russeluno.png" alt="Russeluno logo" loading="lazy"></div>
-    <div class="logo-tile"><img src="assets/logos/brand-puma.png" alt="Puma logo" loading="lazy"></div>
+  <div class="logo-marquee">
+    <div class="marquee-fade marquee-fade-left" aria-hidden="true"></div>
+    <div class="marquee-fade marquee-fade-right" aria-hidden="true"></div>
+    <div class="marquee-track">
+      <!-- set 1 -->
+      <div class="logo-tile"><img src="assets/logos/brand-saxx.png" alt="SAXX" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-tnf.png" alt="The North Face" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-newbalance.png" alt="New Balance" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-oakley.png" alt="Oakley" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-fanatics.png" alt="Fanatics" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-xgirl.png" alt="X-GIRL" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-voormi.png" alt="Voormi" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-radmor.png" alt="Radmor Golf" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-spao.png" alt="SPAO" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-columbia.png" alt="Columbia" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-russeluno.png" alt="Russeluno" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-puma.png" alt="Puma" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-k3b.png" alt="K-3B" loading="lazy"></div>
+      <div class="logo-tile"><img src="assets/logos/brand-quince.png" alt="Quince" loading="lazy"></div>
+      <!-- set 2 (loop duplicate) -->
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-saxx.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-tnf.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-newbalance.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-oakley.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-fanatics.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-xgirl.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-voormi.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-radmor.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-spao.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-columbia.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-russeluno.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-puma.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-k3b.png" alt="" loading="lazy"></div>
+      <div class="logo-tile" aria-hidden="true"><img src="assets/logos/brand-quince.png" alt="" loading="lazy"></div>
+    </div>
   </div>
 </section>
 
@@ -316,82 +349,174 @@
 
   <div class="factories-grid">
     <div class="factory-card">
-      <div class="factory-photo">Factory photo coming soon</div>
       <div class="factory-top">
-        <div class="factory-name">TIENHUNG</div>
-        <span class="factory-badge">Hanoi</span>
+        <div class="factory-name">TIEN HUNG</div>
+        <span class="factory-badge">Vietnam, Hanoi</span>
       </div>
       <div class="factory-stats">
-        <div><div class="factory-stat-value">3,900</div><div class="factory-stat-label">Employees</div></div>
-        <div><div class="factory-stat-value">60</div><div class="factory-stat-label">Production lines</div></div>
+        <div class="factory-stat factory-stat-accent">
+          <div class="factory-stat-value">3,900</div>
+          <div class="factory-stat-label">Employees</div>
+        </div>
+        <div class="factory-stat">
+          <div class="factory-stat-value">60</div>
+          <div class="factory-stat-label">Sewing lines</div>
+        </div>
       </div>
-      <div class="factory-products">
-        <div class="factory-products-label">Main products</div>
-        <div class="factory-products-text">Woven &amp; Knit · Sports / Outdoor / Swimwear / Casual · Down jackets / Coats / Bottoms / Tops</div>
+      <div class="factory-tags">
+        <span>Woven &amp; Knit</span><span>Sports</span><span>Outdoor</span><span>Swimwear</span><span>Casual</span><span>Down jackets</span><span>Coats</span>
       </div>
+      <button type="button" class="btn-tour" data-video="1ypMhXMDO9TPmHbXh4aeC_6jy44BTqSzm" data-name="TIEN HUNG">
+        <span class="play-icon" aria-hidden="true"></span>
+        Watch factory tour
+      </button>
     </div>
 
     <div class="factory-card">
-      <div class="factory-photo">Factory photo coming soon</div>
       <div class="factory-top">
-        <div class="factory-name">HUNGLONG</div>
-        <span class="factory-badge">Hanoi</span>
+        <div class="factory-name">HUNG LONG</div>
+        <span class="factory-badge">Vietnam, Hanoi</span>
       </div>
       <div class="factory-stats">
-        <div><div class="factory-stat-value">1,900</div><div class="factory-stat-label">Employees</div></div>
-        <div><div class="factory-stat-value">30</div><div class="factory-stat-label">Production lines</div></div>
+        <div class="factory-stat factory-stat-accent">
+          <div class="factory-stat-value">1,900</div>
+          <div class="factory-stat-label">Employees</div>
+        </div>
+        <div class="factory-stat">
+          <div class="factory-stat-value">30</div>
+          <div class="factory-stat-label">Sewing lines</div>
+        </div>
       </div>
-      <div class="factory-products">
-        <div class="factory-products-label">Main products</div>
-        <div class="factory-products-text">Woven &amp; Knit · Sports / Outdoor / Casual · Down jackets / Bottoms / Tops / Underwear</div>
+      <div class="factory-tags">
+        <span>Woven &amp; Knit</span><span>Sports</span><span>Heavy jackets</span><span>Underwear</span><span>Coats</span>
       </div>
+      <button type="button" class="btn-tour" data-video="1sjTR24sb2bnSqlMWGwQVYYYX63v9eimO" data-name="HUNG LONG">
+        <span class="play-icon" aria-hidden="true"></span>
+        Watch factory tour
+      </button>
     </div>
 
     <div class="factory-card">
-      <div class="factory-photo">Factory photo coming soon</div>
       <div class="factory-top">
         <div class="factory-name">FOREMART</div>
-        <span class="factory-badge">Hanoi</span>
+        <span class="factory-badge">Vietnam, Hanoi</span>
       </div>
       <div class="factory-stats">
-        <div><div class="factory-stat-value">3,200</div><div class="factory-stat-label">Employees</div></div>
-        <div><div class="factory-stat-value">54</div><div class="factory-stat-label">Production lines</div></div>
+        <div class="factory-stat factory-stat-accent">
+          <div class="factory-stat-value">2,200</div>
+          <div class="factory-stat-label">Employees</div>
+        </div>
+        <div class="factory-stat">
+          <div class="factory-stat-value">29</div>
+          <div class="factory-stat-label">Sewing lines</div>
+        </div>
       </div>
-      <div class="factory-products">
-        <div class="factory-products-label">Main products</div>
-        <div class="factory-products-text">Woven · Sports / Outdoor / Seam-sealing / GORETEX functional apparel · 2 &amp; 3 layer, down jackets</div>
+      <div class="factory-tags">
+        <span>Woven</span><span>Sports</span><span>Outdoor</span><span>Seam-sealing</span><span>GORETEX</span><span>2 &amp; 3 layer</span><span>Down jackets</span>
+      </div>
+      <button type="button" class="btn-tour" data-video="1k8332TXDNo_ZjlNl_EWWd-F7Xcjjh2Od" data-name="FOREMART">
+        <span class="play-icon" aria-hidden="true"></span>
+        Watch factory tour
+      </button>
+    </div>
+
+    <div class="factory-card">
+      <div class="factory-top">
+        <div class="factory-name">MAREEP</div>
+        <span class="factory-badge">Vietnam, Vinh</span>
+      </div>
+      <div class="factory-stats">
+        <div class="factory-stat factory-stat-accent">
+          <div class="factory-stat-value">1,515</div>
+          <div class="factory-stat-label">Employees</div>
+        </div>
+        <div class="factory-stat">
+          <div class="factory-stat-value">27</div>
+          <div class="factory-stat-label">Sewing lines</div>
+        </div>
+      </div>
+      <div class="factory-tags">
+        <span>Woven</span><span>Sports</span><span>Outdoor</span><span>Seam-sealing</span><span>GORETEX</span><span>2 &amp; 3 layer</span><span>Down jackets</span>
       </div>
     </div>
 
     <div class="factory-card">
-      <div class="factory-photo">Factory photo coming soon</div>
       <div class="factory-top">
         <div class="factory-name">MINH TRI</div>
-        <span class="factory-badge">Hanoi</span>
+        <span class="factory-badge">Vietnam, Hanoi</span>
       </div>
       <div class="factory-stats">
-        <div><div class="factory-stat-value">2,680</div><div class="factory-stat-label">Employees</div></div>
-        <div><div class="factory-stat-value">45</div><div class="factory-stat-label">Production lines</div></div>
+        <div class="factory-stat factory-stat-accent">
+          <div class="factory-stat-value">2,680</div>
+          <div class="factory-stat-label">Employees</div>
+        </div>
+        <div class="factory-stat">
+          <div class="factory-stat-value">45</div>
+          <div class="factory-stat-label">Sewing lines</div>
+        </div>
       </div>
-      <div class="factory-products">
-        <div class="factory-products-label">Main products</div>
-        <div class="factory-products-text">Knit · Casual / Sports · Polo shirts / T-shirts / Pants / Pajamas</div>
+      <div class="factory-tags">
+        <span>Knit</span><span>Casual</span><span>Sports</span><span>Polo shirts</span><span>T-shirts</span><span>Pants</span><span>Pajamas</span>
       </div>
     </div>
 
     <div class="factory-card">
-      <div class="factory-photo">Factory photo coming soon</div>
       <div class="factory-top">
         <div class="factory-name">KR</div>
-        <span class="factory-badge">Korea</span>
+        <span class="factory-badge">Vietnam, Hai Phong</span>
       </div>
       <div class="factory-stats">
-        <div><div class="factory-stat-value">250</div><div class="factory-stat-label">Employees</div></div>
-        <div><div class="factory-stat-value">-</div><div class="factory-stat-label">Production lines</div></div>
+        <div class="factory-stat factory-stat-accent">
+          <div class="factory-stat-value">200</div>
+          <div class="factory-stat-label">Employees</div>
+        </div>
+        <div class="factory-stat">
+          <div class="factory-stat-value">4</div>
+          <div class="factory-stat-label">Sewing lines</div>
+        </div>
       </div>
-      <div class="factory-products">
-        <div class="factory-products-label">Main products</div>
-        <div class="factory-products-text">Seam-sealing · Woven · Outdoor · Down jackets · Heavy jackets</div>
+      <div class="factory-tags">
+        <span>Woven</span><span>Seam-sealing</span><span>Pants</span><span>Outdoor</span><span>Down jackets</span><span>Insulation</span><span>Leather</span>
+      </div>
+    </div>
+
+    <div class="factory-card">
+      <div class="factory-top">
+        <div class="factory-name">KINH BAC</div>
+        <span class="factory-badge">Vietnam, Hanoi</span>
+      </div>
+      <div class="factory-stats">
+        <div class="factory-stat factory-stat-accent">
+          <div class="factory-stat-value">300</div>
+          <div class="factory-stat-label">Employees</div>
+        </div>
+        <div class="factory-stat">
+          <div class="factory-stat-value">6</div>
+          <div class="factory-stat-label">Sewing lines</div>
+        </div>
+      </div>
+      <div class="factory-tags">
+        <span>Woven</span><span>Casual</span><span>Uniform</span><span>Pants</span><span>Heavy jackets</span>
+      </div>
+    </div>
+
+    <div class="factory-card">
+      <div class="factory-top">
+        <div class="factory-name">MERKAVA</div>
+        <span class="factory-badge">Vietnam, Bao Loc</span>
+      </div>
+      <div class="factory-stats">
+        <div class="factory-stat factory-stat-accent">
+          <div class="factory-stat-value">450</div>
+          <div class="factory-stat-label">Employees</div>
+        </div>
+        <div class="factory-stat">
+          <div class="factory-stat-value">6</div>
+          <div class="factory-stat-label">Sewing lines</div>
+        </div>
+      </div>
+      <div class="factory-tags">
+        <span>Woven &amp; Knit</span><span>Seam-sealing</span><span>Tops</span><span>Pants</span><span>Underwear</span><span>Heavy jackets</span>
       </div>
     </div>
   </div>
@@ -401,7 +526,7 @@
 <footer id="contact" class="contact-footer dark-section">
   <div class="footer-top">
     <h2 class="footer-title">Let's start a new partnership.</h2>
-    <a href="mailto:contact@samilplus.com" class="footer-cta">Contact us →</a>
+    <a href="mailto:info@samilplus.vn" class="footer-cta" data-open-contact>Contact us →</a>
   </div>
 
   <div class="footer-grid">
@@ -423,8 +548,39 @@
     </div>
   </div>
 
-  <div class="footer-copy">© 2026 SAMILPLUS CO., LTD. Contact details will be updated soon.</div>
+  <div class="footer-copy">© 2026 SAMILPLUS CO., LTD. All rights reserved. · Privacy Policy · Terms of Use</div>
 </footer>
 
+<!-- VIDEO MODAL -->
+<div class="modal-backdrop video-backdrop" id="video-modal" hidden>
+  <div class="video-panel" role="dialog" aria-modal="true" aria-label="Factory tour video">
+    <div class="video-panel-head">
+      <div class="video-title"></div>
+      <button type="button" class="modal-close video-close" aria-label="Close">✕</button>
+    </div>
+    <div class="video-frame">
+      <iframe src="" title="Factory tour video" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <a class="video-drive-link" href="#" target="_blank" rel="noopener">Open in Google Drive ↗</a>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-backdrop contact-backdrop" id="contact-modal" hidden>
+  <div class="contact-panel" role="dialog" aria-modal="true" aria-label="Contact">
+    <button type="button" class="modal-close contact-close" aria-label="Close">✕</button>
+    <div class="contact-head">
+      <div class="contact-eyebrow">CONTACT</div>
+      <div class="contact-title">Get in touch</div>
+    </div>
+    <div class="contact-email-box">info@samilplus.vn</div>
+    <div class="contact-actions">
+      <button type="button" class="btn-copy">Copy</button>
+      <a href="mailto:info@samilplus.vn" class="btn-send">Send email</a>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -14,6 +14,11 @@
   ::selection { background: #3879CE; color: #fff; }
   a { color: #3879CE; text-decoration: none; }
   a:hover { color: #2960a8; }
+  @keyframes sp-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .sp-marquee:hover .sp-marquee-track { animation-play-state: paused; }
+  .sp-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .sp-reveal.sp-visible { opacity: 1; transform: translateY(0); }
+  @keyframes sp-word { from { opacity: 0; transform: translateY(0.6em); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </helmet>
 
@@ -24,14 +29,35 @@
     <a href="#top" style="display:flex; align-items:baseline; gap:10px; text-decoration:none; flex-shrink:0;">
       <span style="font-size:20px; font-weight:800; letter-spacing:-0.02em; color:#14171f; white-space:nowrap;">Samil Plus</span>
     </a>
-    <nav style="display:flex; gap:22px; font-size:16px; font-weight:600; white-space:nowrap; flex-shrink:1; min-width:0;">
-      <a href="#catalog" style="color:#14171f;">Catalog</a>
-      <a href="#about" style="color:#14171f;">About</a>
-      <a href="#partners" style="color:#14171f;">Partners</a>
-      <a href="#factories" style="color:#14171f;">Factories</a>
-    </nav>
-    <a href="#contact" style="background:#14171f; color:#fff; font-size:15px; font-weight:700; padding:10px 18px; border-radius:999px; flex-shrink:0; white-space:nowrap;" style-hover="background:{{ accent }};">Contact</a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex; gap:22px; font-size:16px; font-weight:600; white-space:nowrap; flex-shrink:1; min-width:0;">
+        <a href="#catalog" style="color:#14171f;">Catalog</a>
+        <a href="#about" style="color:#14171f;">About</a>
+        <a href="#partners" style="color:#14171f;">Partners</a>
+        <a href="#factories" style="color:#14171f;">Factories</a>
+      </nav>
+    </sc-if>
+    <div style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
+      <a href="#contact" onClick="{{ openContact }}" style="background:#14171f; color:#fff; font-size:15px; font-weight:700; padding:10px 18px; border-radius:999px; flex-shrink:0; white-space:nowrap; cursor:pointer;" style-hover="background:{{ accent }};">Contact</a>
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:flex; flex-direction:column; justify-content:center; gap:5px; width:42px; height:42px; border:1px solid rgba(20,23,31,0.15); background:#fff; border-radius:12px; cursor:pointer; padding:0 10px; box-sizing:border-box;">
+          <span style="display:block; height:2px; border-radius:2px; background:#14171f;"></span>
+          <span style="display:block; height:2px; border-radius:2px; background:#14171f;"></span>
+          <span style="display:block; height:2px; border-radius:2px; background:#14171f;"></span>
+        </button>
+      </sc-if>
+    </div>
   </header>
+
+  <!-- MOBILE MENU -->
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; top:74px; left:0; right:0; z-index:49; background:#f5f6f8; border-bottom:1px solid rgba(20,23,31,0.1); display:flex; flex-direction:column; padding:8px 24px 16px; box-shadow:0 20px 36px rgba(20,23,31,0.1);">
+      <a href="#catalog" onClick="{{ closeMenu }}" style="padding:14px 0; font-size:17px; font-weight:700; color:#14171f; border-bottom:1px solid rgba(20,23,31,0.07);">Catalog</a>
+      <a href="#about" onClick="{{ closeMenu }}" style="padding:14px 0; font-size:17px; font-weight:700; color:#14171f; border-bottom:1px solid rgba(20,23,31,0.07);">About</a>
+      <a href="#partners" onClick="{{ closeMenu }}" style="padding:14px 0; font-size:17px; font-weight:700; color:#14171f; border-bottom:1px solid rgba(20,23,31,0.07);">Partners</a>
+      <a href="#factories" onClick="{{ closeMenu }}" style="padding:14px 0; font-size:17px; font-weight:700; color:#14171f;">Factories</a>
+    </div>
+  </sc-if>
 
   <!-- HERO -->
   
@@ -44,9 +70,8 @@
       <div style="position:relative; display:inline-flex; width:fit-content; align-items:center; gap:8px; background:rgba(20,23,31,0.06); color:rgba(20,23,31,0.6); font-size:14.5px; font-weight:700; letter-spacing:0.04em; padding:7px 14px; border-radius:999px;">
         EST. 2011 · KOREA · JAPAN · VIETNAM
       </div>
-      <h1 style="position:relative; margin:0; font-size:clamp(40px,7vw,88px); font-weight:800; line-height:1.08; letter-spacing:-0.03em; max-width:760px;">
-        Good clothes come from <span style="color:{{ accent }};">good partnerships</span>
-      </h1>
+      <h1 style="position: relative; margin: 0; font-size: clamp(40px,7vw,88px); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; max-width: 760px; width: 673px; height: 295px">
+        The partner behind&nbsp;<span data-om-id="56456be8:23" style="color: rgb(56, 121, 206);">the brands you trust</span></h1>
     </sc-if>
 
     <sc-if value="{{ isBoldHero }}" hint-placeholder-val="{{ false }}">
@@ -60,9 +85,7 @@
     </sc-if>
 
     <div style="position:relative; display:flex; justify-content:space-between; align-items:flex-end; gap:32px; flex-wrap:wrap;">
-      <p style="margin:0; max-width:460px; font-size:17.5px; line-height:1.7; color:rgba(20,23,31,0.6);">
-        Backed by deep fabric expertise and strategic analysis — 15 years growing alongside global brands across sport, outdoor, and casual wear.
-      </p>
+      <p style="margin:0; max-width:460px; font-size:17.5px; line-height:1.7; color:rgba(20,23,31,0.6);">15 years building technical apparel for global sport, outdoor, and casual brands.</p>
       <div style="display:flex; gap:12px; align-items:center;">
         
         <a href="#factories" style="color:#14171f; font-weight:600; font-size:16px; border-bottom:2px solid rgba(20,23,31,0.25); padding-bottom:2px;" style-hover="border-color:{{ accent }}; color:{{ accent }};">
@@ -74,36 +97,41 @@
     <div style="position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(20,23,31,0.08); border-radius:{{ cardRadius }}; overflow:hidden; margin-top:16px;">
       <div style="background:#f5f6f8; padding:22px 24px;">
         <div style="font-size:clamp(24px,3vw,34px); font-weight:800;">2011</div>
-        <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Founded as Hansun Plus, 15 years of experience</div>
+        <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;"><span class="_animating_6ta1u_10" data-newtext-seq="90">Founded in 2011 </span><span class="_animating_6ta1u_10" data-newtext-seq="106">— 15 years </span><span class="_animating_6ta1u_10" data-newtext-seq="117">in </span><span class="_animating_6ta1u_10" data-newtext-seq="120">apparel </span><span class="_animating_6ta1u_10" data-newtext-seq="128">manufacturing</span></div>
       </div>
       <div style="background:#f5f6f8; padding:22px 24px;">
-        <div style="font-size:clamp(24px,3vw,34px); font-weight:800;">15,000+</div>
-        <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Skilled workers across Vietnam partner factories</div>
+        <div style="font-size:clamp(24px,3vw,34px); font-weight:800;">13,000+</div>
+        <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Skilled workers across our partner factories</div>
       </div>
       <div style="background:#f5f6f8; padding:22px 24px;">
         <div style="font-size:clamp(24px,3vw,34px); font-weight:800;">3 Countries</div>
-        <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Korea · Japan · Vietnam network</div>
+        <div style="font-size:15.5px; color:rgba(20,23,31,0.5); margin-top:6px;">Korea · Japan · Vietnam sourcing &amp; production network</div>
       </div>
     </div>
   </section><section id="catalog" data-screen-label="Catalog" style="padding:{{ padSection }} clamp(20px,4vw,56px); display:flex; flex-direction:column; gap:{{ gapLg }};">
     <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;">
       <div>
         <div style="font-size: 15.5px; font-weight: 700; color: rgba(20,23,31,0.45); letter-spacing: 0.06em; margin-bottom: 8px">CATALOG</div>
-        <h2 style="margin:0; font-size:clamp(30px,4vw,48px); font-weight:800; letter-spacing:-0.02em;">Apparel Catalogue</h2>
-      </div><p style="margin:0; max-width:360px; font-size:16px; line-height:1.6; color:rgba(20,23,31,0.55);">
-        The full sample catalog is being prepared as a single PPT file. Once uploaded, you'll be able to download it directly below.
-      </p>
+        <h2 style="margin:0; font-size:clamp(30px,4vw,48px); font-weight:800; letter-spacing:-0.02em;">Apparel Catalog</h2>
+      </div>
       
     </div>
 
-    <div style="border:{{ cardBorder }}; border-radius:{{ cardRadius }}; padding:32px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; background:#fff;">
-      <div>
-        <div style="font-size:20px; font-weight:800;">Apparel Catalogue</div>
-        
+    <div style="border:{{ cardBorder }}; border-radius:{{ cardRadius }}; padding:32px; display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; background:#fff;">
+      <div style="display:flex; flex-direction:column; gap:6px; min-width:220px; max-width:340px;">
+        <div style="font-size:20px; font-weight:800;">Request our catalog</div>
+        <div style="font-size:15px; color:rgba(20,23,31,0.55); line-height:1.55;">Enter your email and we'll send the full apparel catalog to your inbox.</div>
       </div>
-      <a href="#" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:{{ accent }}; color:#fff; font-size:16px; font-weight:700; padding:14px 26px; border-radius:999px; width:fit-content;" style-hover="background:{{ accentDark }};">
-        Download PPT ↓
-      </a>
+      <div style="display:flex; flex-direction:column; gap:8px; flex:1; min-width:340px; max-width:640px;">
+        <div style="display:flex; gap:10px; flex-wrap:nowrap;">
+          <input type="text" value="{{ reqCompany }}" onChange="{{ onCompanyChange }}" onKeyDown="{{ onEmailKeyDown }}" placeholder="Company name" style="flex:1; min-width:145px; border:1px solid rgba(20,23,31,0.15); border-radius:999px; padding:14px 18px; font-size:16px; font-family:'Pretendard',sans-serif; color:#14171f; background:#f5f6f8; outline:none; box-sizing:border-box;" style-focus="border-color:{{ accent }}; background:#fff;">
+          <input type="email" value="{{ reqEmail }}" onChange="{{ onEmailChange }}" onKeyDown="{{ onEmailKeyDown }}" placeholder="your@email.com" style="flex:1.2; min-width:160px; border:1px solid rgba(20,23,31,0.15); border-radius:999px; padding:14px 18px; font-size:16px; font-family:'Pretendard',sans-serif; color:#14171f; background:#f5f6f8; outline:none; box-sizing:border-box;" style-focus="border-color:{{ accent }}; background:#fff;">
+          <button onClick="{{ requestCatalog }}" style="border:none; background:{{ accent }}; color:#fff; font-size:16px; font-weight:700; padding:14px 26px; border-radius:999px; cursor:pointer; font-family:'Pretendard',sans-serif; white-space:nowrap;" style-hover="background:{{ accentDark }};">
+            Request Catalog →
+          </button>
+        </div>
+        <div style="font-size:14.5px; color:{{ reqNoteColor }}; min-height:20px; padding-left:6px;">{{ reqNote }}</div>
+      </div>
     </div>
   </section>
 
@@ -112,21 +140,19 @@
 
     <div style="display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(24px,4vw,56px); align-items:end;">
       <div>
-        <div style="font-size:16px; font-weight:700; color:{{ sectionEyebrow }}; letter-spacing:0.08em; margin-bottom:10px;">ABOUT US</div>
-        <h2 style="margin:0; font-size:clamp(32px,4.5vw,54px); font-weight:800; letter-spacing:-0.02em; line-height:1.1;">Built season by season, since 2011</h2>
+        <div style="font-size: 16px; font-weight: 700; color: #E9E9E9; letter-spacing: 0.08em; margin-bottom: 10px">ABOUT US</div>
+        <h2 style="margin: 0; font-size: clamp(32px,4.5vw,54px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; color: #F5F6F8; width: 915px; height: 111px">Built season by season, since 2011</h2>
       </div>
-      <p style="margin:0; font-size:18px; line-height:1.7; color:{{ sectionBody65 }};">
-        Samil Plus has grown into a manufacturing partner trusted by global brands, built on market analysis, strategic thinking, and deep fabric expertise.
-      </p>
+      
     </div>
 
     <!-- journey timeline + offices -->
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:clamp(24px,4vw,48px); align-items:stretch;">
 
       <div>
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:22px;">
-          <div style="font-size:16px; font-weight:700; color:{{ sectionEyebrow }}; letter-spacing:0.08em;">OUR JOURNEY</div>
-          <div style="font-size:16px; font-weight:600; color:{{ sectionText50 }};">2011 — 2026</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; color: #E9E9E9">
+          <div style="font-size: 16px; font-weight: 700; color: #E9E9E9; letter-spacing: 0.08em">OUR JOURNEY</div>
+          <div style="font-size: 16px; font-weight: 600; color: #F6F6F6">2011 — 2026</div>
         </div>
         <div style="display:flex; flex-direction:column;">
           <sc-for list="{{ history }}" as="h" hint-placeholder-count="7">
@@ -143,8 +169,8 @@
 
       <div>
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:22px;">
-          <div style="font-size:16px; font-weight:700; color:{{ sectionEyebrow }}; letter-spacing:0.08em;">GLOBAL OFFICES</div>
-          <div style="font-size:16px; font-weight:600; color:{{ sectionText50 }};">4 Cities</div>
+          <div style="font-size: 16px; font-weight: 700; color: #E9E9E9; letter-spacing: 0.08em">GLOBAL OFFICES</div>
+          <div style="font-size: 16px; font-weight: 600; color: #E9E9E9">4 Cities</div>
         </div>
         <div style="border:1px solid {{ sectionDivider }}; border-radius:{{ cardRadius }}; background:{{ sectionCardBg }}; padding:26px; display:flex; flex-direction:column; gap:22px; box-sizing:border-box; height:calc(100% - 52px);">
           <div style="position:relative; flex:1; min-height:320px; border-radius:14px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
@@ -189,7 +215,7 @@
 
     <!-- key strengths -->
     <div>
-      <div style="font-size:16px; font-weight:700; color:{{ sectionEyebrow }}; letter-spacing:0.08em; margin-bottom:18px;">KEY STRENGTHS</div>
+      <div style="font-size: 16px; font-weight: 700; color: #E9E9E9; letter-spacing: 0.08em; margin-bottom: 18px">KEY STRENGTHS</div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:{{ gapMd }};">
         <sc-for list="{{ strengths }}" as="s" hint-placeholder-count="3">
           <div style="border:1px solid {{ sectionDivider }}; border-radius:{{ cardRadius }}; background:{{ sectionCardBg }}; padding:26px; display:flex; flex-direction:column; gap:14px;">
@@ -203,7 +229,7 @@
 
     <!-- product portfolio -->
     <div>
-      <div style="font-size:16px; font-weight:700; color:{{ sectionEyebrow }}; letter-spacing:0.08em; margin-bottom:22px;">PRODUCT PORTFOLIO</div>
+      <div style="font-size: 16px; font-weight: 700; color: #E9E9E9; letter-spacing: 0.08em; margin-bottom: 22px">PRODUCT PORTFOLIO</div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:{{ gapMd }};">
         <sc-for list="{{ portfolio }}" as="p" hint-placeholder-count="3">
           <div style="border:1px solid {{ sectionDivider }}; border-radius:{{ cardRadius }}; background:{{ sectionCardBg }}; padding:30px 28px; display:flex; flex-direction:column; gap:14px;">
@@ -216,11 +242,11 @@
 
     <!-- order share -->
     <div>
-      <div style="font-size:16px; font-weight:700; color:{{ sectionEyebrow }}; letter-spacing:0.08em; margin-bottom:22px;">ORDER SHARE</div>
+      <div style="font-size: 16px; font-weight: 700; color: #E9E9E9; letter-spacing: 0.08em; margin-bottom: 22px">ORDER SHARE</div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:{{ gapMd }};">
         <sc-for list="{{ orderShare }}" as="o" hint-placeholder-count="3">
           <div style="border:1px solid {{ sectionDivider }}; border-radius:{{ cardRadius }}; background:{{ sectionCardBg }}; padding:34px 24px 30px; display:flex; flex-direction:column; align-items:center; gap:22px;">
-            <div style="position:relative; width:170px; height:170px; border-radius:50%; background:conic-gradient({{ accent }} 0deg {{ o.aDeg }}deg, {{ sectionTrack25 }} {{ o.aDeg }}deg 360deg); display:flex; align-items:center; justify-content:center;">
+            <div class="sp-donut" data-deg="{{ o.aDeg }}" data-c1="{{ accent }}" data-c2="{{ sectionTrack25 }}" style="position:relative; width:170px; height:170px; border-radius:50%; background:conic-gradient({{ accent }} 0deg {{ o.aDeg }}deg, {{ sectionTrack25 }} {{ o.aDeg }}deg 360deg); display:flex; align-items:center; justify-content:center;">
               <div style="width:122px; height:122px; border-radius:50%; background:{{ sectionCardBg }}; display:flex; align-items:center; justify-content:center;">
                 <span style="font-size:34px; font-weight:800; color:{{ sectionTextStrong }};">{{ o.aPct }}%</span>
               </div>
@@ -250,12 +276,16 @@
       <h2 style="margin:0; font-size:clamp(30px,4vw,48px); font-weight:800; letter-spacing:-0.02em;">Global Brand Partners</h2>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:{{ gapMd }};">
-      <sc-for list="{{ brandLogos }}" as="b" hint-placeholder-count="12">
-        <div style="border:{{ cardBorder }}; border-radius:{{ cardRadius }}; height:112px; box-sizing:border-box; padding:24px; overflow:hidden; background:#fff; display:flex; align-items:center; justify-content:center;">
-          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ b.slotId }}" shape="rect" fit="contain" placeholder="{{ b.name }} logo" hint-size="100%,100%"></x-import>
-        </div>
-      </sc-for>
+    <div class="sp-marquee" style="overflow:hidden; position:relative;">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:60px; z-index:2; background:linear-gradient(to right, #f5f6f8, rgba(245,246,248,0)); pointer-events:none;"></div>
+      <div style="position:absolute; right:0; top:0; bottom:0; width:60px; z-index:2; background:linear-gradient(to left, #f5f6f8, rgba(245,246,248,0)); pointer-events:none;"></div>
+      <div class="sp-marquee-track" style="display:flex; width:max-content; animation:sp-marquee 36s linear infinite;">
+        <sc-for list="{{ brandLogosLoop }}" as="b" hint-placeholder-count="28">
+          <div style="border:{{ cardBorder }}; border-radius:{{ cardRadius }}; height:112px; width:210px; box-sizing:border-box; padding:20px 28px; overflow:hidden; background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-right:18px;">
+            <img src="{{ b.src }}" alt="{{ b.name }}" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+        </sc-for>
+      </div>
     </div>
   </section>
 
@@ -271,28 +301,32 @@
 
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:{{ gapMd }};">
       <sc-for list="{{ factories }}" as="f" hint-placeholder-count="4">
-        <div style="border:{{ cardBorder }}; border-radius:{{ cardRadius }}; padding:26px; display:flex; flex-direction:column; gap:16px; background:#fff;">
-          <div style="width:100%; aspect-ratio:16/9; border-radius:{{ cardRadiusInner }}; overflow:hidden;">
-            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ f.slotId }}" shape="rect" placeholder="Factory photo" hint-size="100%,100%"></x-import>
-          </div>
+        <div style="border:{{ cardBorder }}; border-radius:{{ cardRadius }}; padding:26px; display:flex; flex-direction:column; gap:18px; background:#fff;">
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-            <div style="font-size:20px; font-weight:800;">{{ f.name }}</div>
+            <div style="font-size:21px; font-weight:800;">{{ f.name }}</div>
             <span style="font-size: 14px; font-weight: 700; color: {{ accent }}; border: 1px solid {{ accentBorderSoft }}; border-radius: 999px; padding: 4px 10px">{{ f.location }}</span>
           </div>
-          <div style="display:flex; gap:24px;">
-            <div>
-              <div style="font-size:20px; font-weight:800;">{{ f.size }}</div>
-              <div style="font-size:14.5px; color:rgba(20,23,31,0.45); margin-top:2px;">Employees</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:{{ accentPanel }}; border-radius:{{ cardRadiusInner }}; padding:20px 20px 18px;">
+              <div style="font-size:clamp(30px,2.6vw,38px); font-weight:800; letter-spacing:-0.02em; color:{{ accent }};">{{ f.size }}</div>
+              <div style="font-size:14.5px; font-weight:600; color:rgba(20,23,31,0.55); margin-top:4px;">Employees</div>
             </div>
-            <div>
-              <div style="font-size:20px; font-weight:800;">{{ f.lines }}</div>
-              <div style="font-size:14.5px; color:rgba(20,23,31,0.45); margin-top:2px;">Production lines</div>
+            <div style="background:rgba(20,23,31,0.04); border-radius:{{ cardRadiusInner }}; padding:20px 20px 18px;">
+              <div style="font-size:clamp(30px,2.6vw,38px); font-weight:800; letter-spacing:-0.02em;">{{ f.lines }}</div>
+              <div style="font-size:14.5px; font-weight:600; color:rgba(20,23,31,0.55); margin-top:4px;">Sewing lines</div>
             </div>
           </div>
-          <div style="border-top:1px solid rgba(20,23,31,0.08); padding-top:14px;">
-            <div style="font-size:14.5px; font-weight:700; color:rgba(20,23,31,0.45); margin-bottom:6px;">Main products</div>
-            <div style="font-size:16px; line-height:1.6; color:rgba(20,23,31,0.75);">{{ f.products }}</div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <sc-for list="{{ f.tags }}" as="t" hint-placeholder-count="4">
+              <span style="font-size:14px; font-weight:600; color:rgba(20,23,31,0.65); background:rgba(20,23,31,0.05); border-radius:999px; padding:6px 13px;">{{ t }}</span>
+            </sc-for>
           </div>
+          <sc-if value="{{ f.videoId }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ openVideo }}" data-video="{{ f.videoId }}" data-name="{{ f.name }}" style="display:flex; align-items:center; justify-content:center; gap:9px; width:100%; border:1px solid {{ accentBorderSoft }}; background:transparent; color:{{ accent }}; font-size:15px; font-weight:700; padding:13px 0; border-radius:999px; cursor:pointer; font-family:'Pretendard',sans-serif; margin-top:auto;" style-hover="background:{{ accent }}; color:#fff;">
+              <span style="display:inline-flex; width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:8px solid currentColor;"></span>
+              Watch factory tour
+            </button>
+          </sc-if>
         </div>
       </sc-for>
     </div>
@@ -304,7 +338,7 @@
       <h2 style="margin:0; font-size:clamp(28px,4vw,44px); font-weight:800; letter-spacing:-0.02em; max-width:520px; line-height:1.2;">
         Let's start a new partnership.
       </h2>
-      <a href="mailto:contact@samilplus.com" style="display:inline-flex; align-items:center; gap:8px; background:{{ accent }}; color:#fff; font-weight:700; font-size:16px; padding:16px 28px; border-radius:999px;" style-hover="background:{{ sectionBg }}; color:{{ sectionTextStrong }};">
+      <a href="mailto:info@samilplus.vn" onClick="{{ openContact }}" style="display:inline-flex; align-items:center; gap:8px; background:{{ accent }}; color:#fff; font-weight:700; font-size:16px; padding:16px 28px; border-radius:999px; cursor:pointer;" style-hover="background:{{ sectionBg }}; color:{{ sectionTextStrong }};">
         Contact us →
       </a>
     </div>
@@ -328,8 +362,50 @@
       </div>
     </div>
 
-    <div style="font-size:14.5px; color:{{ footerText30 }};">© 2026 SAMILPLUS CO., LTD. Contact details will be updated soon.</div>
+    <div style="font-size:14.5px; color:{{ footerText30 }};"><span class="_animating_6ta1u_10" data-newtext-seq="2">© </span><span class="_animating_6ta1u_10" data-newtext-seq="4">2026 </span><span class="_animating_6ta1u_10" data-newtext-seq="9">SAMILPLUS CO., </span><span class="_animating_6ta1u_10" data-newtext-seq="24">LTD. All </span><span class="_animating_6ta1u_10" data-newtext-seq="33">rights </span><span class="_animating_6ta1u_10" data-newtext-seq="40">reserved. · </span><span class="_animating_6ta1u_10" data-newtext-seq="52">Privacy Policy </span><span class="_animating_6ta1u_10" data-newtext-seq="67">· Terms </span><span class="_animating_6ta1u_10" data-newtext-seq="75">of Use</span></div>
   </footer>
+
+  <!-- VIDEO MODAL -->
+  <sc-if value="{{ videoOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeVideo }}" style="position:fixed; inset:0; z-index:100; background:rgba(10,12,17,0.75); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:24px;">
+      <div onClick="{{ stopProp }}" style="background:#0d0f14; border-radius:20px; padding:20px; width:min(960px,100%); box-sizing:border-box; display:flex; flex-direction:column; gap:14px; box-shadow:0 24px 64px rgba(0,0,0,0.4);">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+          <div style="font-size:17px; font-weight:800; color:#f5f6f8;">{{ videoTitle }}</div>
+          <button onClick="{{ closeVideo }}" aria-label="Close" style="width:34px; height:34px; border:none; background:rgba(245,246,248,0.1); border-radius:50%; font-size:15px; font-weight:600; color:rgba(245,246,248,0.7); cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'Pretendard',sans-serif; flex-shrink:0;" style-hover="background:rgba(245,246,248,0.2); color:#fff;">✕</button>
+        </div>
+        <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:12px; overflow:hidden; background:#000;">
+          <iframe src="{{ videoSrc }}" allow="autoplay; fullscreen" allowFullScreen="true" style="position:absolute; inset:0; width:100%; height:100%; border:none;"></iframe>
+        </div>
+        <a href="{{ videoDriveUrl }}" target="_blank" rel="noopener" style="align-self:flex-end; font-size:14.5px; font-weight:600; color:rgba(245,246,248,0.6);" style-hover="color:#fff;">
+          Open in Google Drive ↗
+        </a>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- CONTACT MODAL -->
+  <sc-if value="{{ contactOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeContact }}" style="position:fixed; inset:0; z-index:100; background:rgba(20,23,31,0.55); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:20px;">
+      <div onClick="{{ stopProp }}" style="background:#fff; color:#14171f; border-radius:24px; padding:40px; max-width:460px; width:100%; box-sizing:border-box; display:flex; flex-direction:column; gap:26px; position:relative; box-shadow:0 24px 64px rgba(0,0,0,0.28);">
+        <button onClick="{{ closeContact }}" aria-label="Close" style="position:absolute; top:16px; right:16px; width:36px; height:36px; border:none; background:rgba(20,23,31,0.06); border-radius:50%; font-size:16px; font-weight:600; color:rgba(20,23,31,0.6); cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:'Pretendard',sans-serif;" style-hover="background:rgba(20,23,31,0.12); color:#14171f;">✕</button>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="font-size:14px; font-weight:700; color:{{ accent }}; letter-spacing:0.08em;">CONTACT</div>
+          <div style="font-size:28px; font-weight:800; letter-spacing:-0.02em;">Get in touch</div>
+        </div>
+        <div style="background:{{ accentPanel }}; border-radius:16px; padding:24px; text-align:center; font-size:clamp(19px,2.4vw,23px); font-weight:800; letter-spacing:-0.01em; color:{{ accent }}; word-break:break-all;">
+          info@samilplus.vn
+        </div>
+        <div style="display:flex; gap:12px;">
+          <button onClick="{{ copyEmail }}" style="flex:1; border:1px solid rgba(20,23,31,0.15); background:#fff; color:#14171f; font-size:16px; font-weight:700; padding:14px 0; border-radius:999px; cursor:pointer; font-family:'Pretendard',sans-serif;" style-hover="border-color:{{ accent }}; color:{{ accent }};">
+            {{ copyLabel }}
+          </button>
+          <a href="mailto:info@samilplus.vn" style="flex:1; display:inline-flex; align-items:center; justify-content:center; background:{{ accent }}; color:#fff; font-size:16px; font-weight:700; padding:14px 0; border-radius:999px;" style-hover="background:{{ accentDark }};">
+            Send email
+          </a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
 
 </div>
 </x-dc>
@@ -359,18 +435,20 @@ class Component extends DCLogic {
   ];
 
   brandLogos = [
-    { name: 'SAXX', slotId: 'brand-saxx' },
-    { name: 'The North Face', slotId: 'brand-tnf' },
-    { name: 'New Balance', slotId: 'brand-newbalance' },
-    { name: 'Oakley', slotId: 'brand-oakley' },
-    { name: 'Fanatics', slotId: 'brand-fanatics' },
-    { name: 'X-GIRL', slotId: 'brand-xgirl' },
-    { name: 'Voormi', slotId: 'brand-voormi' },
-    { name: 'Radmor Golf', slotId: 'brand-radmor' },
-    { name: 'SPAO', slotId: 'brand-spao' },
-    { name: 'Columbia', slotId: 'brand-columbia' },
-    { name: 'Russeluno', slotId: 'brand-russeluno' },
-    { name: 'Puma', slotId: 'brand-puma' },
+    { name: 'SAXX', src: 'assets/brands/brand-saxx.png' },
+    { name: 'The North Face', src: 'assets/brands/brand-tnf.png' },
+    { name: 'New Balance', src: 'assets/brands/brand-newbalance.png' },
+    { name: 'Oakley', src: 'assets/brands/brand-oakley.png' },
+    { name: 'Fanatics', src: 'assets/brands/brand-fanatics.png' },
+    { name: 'X-GIRL', src: 'assets/brands/brand-xgirl.png' },
+    { name: 'Voormi', src: 'assets/brands/brand-voormi.png' },
+    { name: 'Radmor Golf', src: 'assets/brands/brand-radmor.png' },
+    { name: 'SPAO', src: 'assets/brands/brand-spao.png' },
+    { name: 'Columbia', src: 'assets/brands/brand-columbia.png' },
+    { name: 'Russeluno', src: 'assets/brands/brand-russeluno.png' },
+    { name: 'Puma', src: 'assets/brands/brand-puma.png' },
+    { name: 'K-3B', src: 'assets/brands/brand-k3b.png' },
+    { name: 'Quince', src: 'assets/brands/brand-quince.png' },
   ];
 
   strengths = [
@@ -392,12 +470,111 @@ class Component extends DCLogic {
   ];
 
   factories = [
-    { name: 'TIENHUNG', location: 'Hanoi', size: '3,900', lines: '60', products: 'Woven & Knit · Sports / Outdoor / Swimwear / Casual · Down jackets / Coats / Bottoms / Tops', slotId: 'factory-tienhung' },
-    { name: 'HUNGLONG', location: 'Hanoi', size: '1,900', lines: '30', products: 'Woven & Knit · Sports / Outdoor / Casual · Down jackets / Bottoms / Tops / Underwear', slotId: 'factory-hunglong' },
-    { name: 'FOREMART', location: 'Hanoi', size: '3,200', lines: '54', products: 'Woven · Sports / Outdoor / Seam-sealing / GORETEX functional apparel · 2 & 3 layer, down jackets', slotId: 'factory-foremart' },
-    { name: 'MINH TRI', location: 'Hanoi', size: '2,680', lines: '45', products: 'Knit · Casual / Sports · Polo shirts / T-shirts / Pants / Pajamas', slotId: 'factory-minhtri' },
-    { name: 'KR', location: 'Korea', size: '250', lines: '-', products: 'Seam-sealing · Woven · Outdoor · Down jackets · Heavy jackets', slotId: 'factory-kr' },
+    { name: 'TIEN HUNG', location: 'Vietnam, Hanoi', size: '3,900', lines: '60', videoId: '1ypMhXMDO9TPmHbXh4aeC_6jy44BTqSzm', tags: ['Woven & Knit', 'Sports', 'Outdoor', 'Swimwear', 'Casual', 'Down jackets', 'Coats'] },
+    { name: 'HUNG LONG', location: 'Vietnam, Hanoi', size: '1,900', lines: '30', videoId: '1sjTR24sb2bnSqlMWGwQVYYYX63v9eimO', tags: ['Woven & Knit', 'Sports', 'Heavy jackets', 'Underwear', 'Coats'] },
+    { name: 'FOREMART', location: 'Vietnam, Hanoi', size: '2,200', lines: '29', videoId: '1k8332TXDNo_ZjlNl_EWWd-F7Xcjjh2Od', tags: ['Woven', 'Sports', 'Outdoor', 'Seam-sealing', 'GORETEX', '2 & 3 layer', 'Down jackets'] },
+    { name: 'MAREEP', location: 'Vietnam, Vinh', size: '1,515', lines: '27', tags: ['Woven', 'Sports', 'Outdoor', 'Seam-sealing', 'GORETEX', '2 & 3 layer', 'Down jackets'] },
+    { name: 'MINH TRI', location: 'Vietnam, Hanoi', size: '2,680', lines: '45', tags: ['Knit', 'Casual', 'Sports', 'Polo shirts', 'T-shirts', 'Pants', 'Pajamas'] },
+    { name: 'KR', location: 'Vietnam, Hai Phong', size: '200', lines: '4', tags: ['Woven', 'Seam-sealing', 'Pants', 'Outdoor', 'Down jackets', 'Insulation', 'Leather'] },
+    { name: 'KINH BAC', location: 'Vietnam, Hanoi', size: '300', lines: '6', tags: ['Woven', 'Casual', 'Uniform', 'Pants', 'Heavy jackets'] },
+    { name: 'MERKAVA', location: 'Vietnam, Bao Loc', size: '450', lines: '6', tags: ['Woven & Knit', 'Seam-sealing', 'Tops', 'Pants', 'Underwear', 'Heavy jackets'] },
   ];
+
+  state = { contactOpen: false, copied: false, videoOpen: false, videoId: null, videoName: null, reqEmail: '', reqCompany: '', reqStatus: null, menuOpen: false, isMobile: false };
+
+  componentDidMount() {
+    this._esc = (e) => {
+      if (e.key === 'Escape') this.setState({ contactOpen: false, videoOpen: false });
+    };
+    document.addEventListener('keydown', this._esc);
+
+    this._mq = window.matchMedia('(max-width: 760px)');
+    this._mqHandler = () => this.setState({ isMobile: this._mq.matches, menuOpen: false });
+    if (this._mq.addEventListener) this._mq.addEventListener('change', this._mqHandler);
+    else this._mq.addListener(this._mqHandler);
+    this.setState({ isMobile: this._mq.matches });
+
+    this._revealTimer = setTimeout(() => {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add('sp-visible');
+            this._io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.06 });
+      document.querySelectorAll('section, footer').forEach((el) => {
+        el.classList.add('sp-reveal');
+        this._io.observe(el);
+      });
+
+      // Donut chart fill animation
+      this._ioDonut = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          this._ioDonut.unobserve(en.target);
+          const el = en.target;
+          const target = parseFloat(el.getAttribute('data-deg')) || 0;
+          const c1 = el.getAttribute('data-c1');
+          const c2 = el.getAttribute('data-c2');
+          const t0 = performance.now();
+          const dur = 1100;
+          const step = (now) => {
+            const p = Math.min(1, (now - t0) / dur);
+            const e = 1 - Math.pow(1 - p, 3);
+            const d = target * e;
+            el.style.background = 'conic-gradient(' + c1 + ' 0deg ' + d + 'deg, ' + c2 + ' ' + d + 'deg 360deg)';
+            if (p < 1) requestAnimationFrame(step);
+          };
+          el.style.background = 'conic-gradient(' + c1 + ' 0deg 0deg, ' + c2 + ' 0deg 360deg)';
+          requestAnimationFrame(step);
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('.sp-donut').forEach((el) => this._ioDonut.observe(el));
+
+      // Hero headline word-by-word entrance
+      let wordIdx = 0;
+      const wrapWords = (node) => {
+        Array.prototype.slice.call(node.childNodes).forEach((child) => {
+          if (child.nodeType === 3) {
+            const frag = document.createDocumentFragment();
+            child.textContent.split(/(\s+)/).forEach((tok) => {
+              if (!tok) return;
+              if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(tok)); return; }
+              const s = document.createElement('span');
+              s.textContent = tok;
+              s.style.display = 'inline-block';
+              s.style.opacity = '0';
+              s.style.animation = 'sp-word 0.6s cubic-bezier(0.2,0.7,0.2,1) forwards';
+              s.style.animationDelay = (0.09 * wordIdx++) + 's';
+              frag.appendChild(s);
+            });
+            node.replaceChild(frag, child);
+          } else if (child.nodeType === 1) {
+            wrapWords(child);
+          }
+        });
+      };
+      document.querySelectorAll('h1').forEach((h) => {
+        if (!h.getAttribute('data-sp-words')) {
+          h.setAttribute('data-sp-words', '1');
+          wrapWords(h);
+        }
+      });
+    }, 300);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this._esc);
+    if (this._copyTimer) clearTimeout(this._copyTimer);
+    if (this._revealTimer) clearTimeout(this._revealTimer);
+    if (this._io) this._io.disconnect();
+    if (this._ioDonut) this._ioDonut.disconnect();
+    if (this._mq) {
+      if (this._mq.removeEventListener) this._mq.removeEventListener('change', this._mqHandler);
+      else this._mq.removeListener(this._mqHandler);
+    }
+  }
 
   hexToRgb(hex) {
     const h = hex.replace('#', '');
@@ -430,7 +607,102 @@ class Component extends DCLogic {
     const isSharp = shape === 'sharp';
     const isCompact = density === 'compact';
 
+    const openContact = (e) => {
+      e.preventDefault();
+      this.setState({ contactOpen: true, copied: false });
+    };
+    const closeContact = () => this.setState({ contactOpen: false });
+    const stopProp = (e) => e.stopPropagation();
+    const copyEmail = () => {
+      const email = 'info@samilplus.vn';
+      const done = () => {
+        this.setState({ copied: true });
+        if (this._copyTimer) clearTimeout(this._copyTimer);
+        this._copyTimer = setTimeout(() => this.setState({ copied: false }), 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done).catch(done);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = email;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      }
+    };
+
+    const onEmailChange = (e) => this.setState({ reqEmail: e.target.value, reqStatus: null });
+    const onCompanyChange = (e) => this.setState({ reqCompany: e.target.value, reqStatus: null });
+    const requestCatalog = () => {
+      const email = (this.state.reqEmail || '').trim();
+      const company = (this.state.reqCompany || '').trim();
+      if (!company) {
+        this.setState({ reqStatus: 'errorCompany' });
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        this.setState({ reqStatus: 'error' });
+        return;
+      }
+      const subject = encodeURIComponent('Catalog Request - ' + company);
+      const body = encodeURIComponent('Hello SAMIL PLUS,\n\nI would like to request your apparel catalog.\n\nCompany: ' + company + '\nEmail: ' + email + '\n\nThank you.');
+      window.location.href = 'mailto:info@samilplus.vn?subject=' + subject + '&body=' + body;
+      this.setState({ reqStatus: 'sent' });
+    };
+    const onEmailKeyDown = (e) => { if (e.key === 'Enter') requestCatalog(); };
+
+    const reqStatus = this.state.reqStatus;
+    const reqNote = reqStatus === 'error'
+      ? 'Please enter a valid email address.'
+      : reqStatus === 'errorCompany'
+        ? 'Please enter your company name.'
+        : reqStatus === 'sent'
+          ? 'Your mail app should open — just hit send. Or email us directly at info@samilplus.vn'
+          : '';
+    const reqNoteColor = (reqStatus === 'error' || reqStatus === 'errorCompany') ? '#d64545' : 'rgba(20,23,31,0.55)';
+
+    const openVideo = (e) => {
+      e.preventDefault();
+      this.setState({
+        videoOpen: true,
+        videoId: e.currentTarget.getAttribute('data-video'),
+        videoName: e.currentTarget.getAttribute('data-name'),
+      });
+    };
+    const closeVideo = () => this.setState({ videoOpen: false });
+
+    const toggleMenu = () => this.setState((s) => ({ menuOpen: !s.menuOpen }));
+    const closeMenu = () => this.setState({ menuOpen: false });
+
     return {
+      isMobile: this.state.isMobile,
+      isDesktop: !this.state.isMobile,
+      menuOpen: this.state.menuOpen,
+      toggleMenu,
+      closeMenu,
+      brandLogosLoop: this.brandLogos.concat(this.brandLogos),
+      reqEmail: this.state.reqEmail,
+      reqCompany: this.state.reqCompany,
+      reqNote,
+      reqNoteColor,
+      onEmailChange,
+      onCompanyChange,
+      onEmailKeyDown,
+      requestCatalog,
+      videoOpen: this.state.videoOpen,
+      videoTitle: (this.state.videoName || '') + ' · Factory Tour',
+      videoSrc: this.state.videoId ? 'https://drive.google.com/file/d/' + this.state.videoId + '/preview' : '',
+      videoDriveUrl: this.state.videoId ? 'https://drive.google.com/file/d/' + this.state.videoId + '/view' : '#',
+      openVideo,
+      closeVideo,
+      contactOpen: this.state.contactOpen,
+      copyLabel: this.state.copied ? 'Copied!' : 'Copy',
+      openContact,
+      closeContact,
+      stopProp,
+      copyEmail,
       history: this.history,
       brandLogos: this.brandLogos,
       strengths: this.strengths,
@@ -443,6 +715,7 @@ class Component extends DCLogic {
       accentBorderSoft: this.rgba(accent, 0.35),
       accentRing: this.rgba(accent, 0.15),
       accentLand: this.rgba(accent, 0.3),
+      accentPanel: this.rgba(accent, 0.08),
       offices: this.offices,
 
       isCleanHero: mood === 'clean',
