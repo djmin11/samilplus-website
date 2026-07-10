@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+html,body{margin:0;height:100%;background:#fff;overflow:hidden}
+#stage{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+#stage img{max-width:94vw;max-height:94vh;object-fit:contain}
+</style></head><body>
+<div id="stage"><img id="im" alt=""></div>
+<script>
+const w = (u) => 'https://wsrv.nl/?url=' + encodeURIComponent(u) + '&w=1600&output=png';
+window.LOGOS = {
+  'oeko':  w('https://images.seeklogo.com/logo-png/45/1/oeko-tex-standard-100-logo-png_seeklogo-458234.png'),
+  'better-work': w('https://images.seeklogo.com/logo-png/38/1/better-work-logo-png_seeklogo-386625.png'),
+  'global-recycled': w('https://images.seeklogo.com/logo-png/39/1/global-recycled-standard-logo-png_seeklogo-399819.png'),
+  'wrap': w('https://images.seeklogo.com/logo-png/61/1/wrap-logo-png_seeklogo-617090.png'),
+  'higg-index': w('https://images.seeklogo.com/logo-png/43/1/higg-index-logo-png_seeklogo-438789.png'),
+  'bci': w('https://commons.wikimedia.org/wiki/Special:FilePath/Better_Cotton_Initiative_logo.svg')
+};
+window.showLogo = (key) => {
+  const im = document.getElementById('im');
+  return new Promise((res) => { im.onload = () => res(key); im.src = window.LOGOS[key]; });
+};
+// preload all
+for (const k in window.LOGOS) { const i = new Image(); i.src = window.LOGOS[k]; }
+</script>
+</body></html>

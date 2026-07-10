@@ -11,6 +11,7 @@
 <helmet data-dc-atomics>
 <meta name="design_doc_mode" content="canvas">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500;600&family=Anton&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <style>
   body { margin: 0; background: #efece5; font-family: 'Work Sans', sans-serif; }
   .dv-turn { padding: 40px 44px 32px; }
@@ -25,6 +26,64 @@
   .dv-next { margin: 22px 0 0; font: 13px/1.6 'Work Sans', sans-serif; color: rgba(0,0,0,.5); }
 </style>
 </helmet>
+
+<section class="dv-turn" id="t3">
+  <div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">Hero video option — close-up sewing/cutting footage as full-bleed background</span></div>
+  <div class="dv-opts">
+
+    <!-- 3a VIDEO HERO -->
+    <div class="dv-opt" id="3a">
+      <div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>Full-bleed close-up sewing footage, dark gradient for legibility, current live copy &amp; system</div>
+      <div class="dv-card" style="background:#14171f; color:#f5f6f8; font-family:'Pretendard',sans-serif; position:relative; overflow:hidden;">
+
+        <header style="position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; padding:20px 40px;">
+          <div style="font-size:19px; font-weight:800; letter-spacing:-0.01em; color:#fff;">Samil Plus</div>
+          <nav style="display:flex; gap:24px; font-size:13px; font-weight:600; color:rgba(255,255,255,0.85);">
+            <span>Catalog</span><span>About</span><span>Partners</span><span>Factories</span>
+          </nav>
+          <a href="#" style="background:#fff; color:#14171f; font-size:12.5px; font-weight:700; padding:10px 18px; border-radius:999px;">Contact</a>
+        </header>
+
+        <div style="position:relative; min-height:520px; display:flex; align-items:flex-end;">
+          <video src="assets/hero-sewing-closeup.mp4" ref="{{ heroVideoRef }}" autoPlay="true" playsInline="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;"></video>
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,12,17,0.25) 0%, rgba(10,12,17,0.55) 55%, rgba(10,12,17,0.92) 100%); z-index:1;"></div>
+
+          <div style="position:relative; z-index:2; padding:0 40px 40px; display:flex; flex-direction:column; gap:18px; width:100%; box-sizing:border-box;">
+            <div style="display:inline-flex; width:fit-content; align-items:center; gap:8px; background:rgba(255,255,255,0.12); backdrop-filter:blur(6px); color:#fff; font-size:12px; font-weight:700; letter-spacing:0.04em; padding:7px 14px; border-radius:999px;">
+              EST. 2011 · KOREA · JAPAN · VIETNAM
+            </div>
+            <div style="font-size:44px; font-weight:800; line-height:1.08; letter-spacing:-0.02em; max-width:560px; color:#fff;">
+              The partner behind <span style="color:#7fb2ff;">the brands you trust</span>
+            </div>
+            <p style="max-width:420px; font-size:14.5px; line-height:1.65; color:rgba(255,255,255,0.75); margin:0;">
+              15 years building technical apparel for global sport, outdoor, and casual brands — filmed on our own production floor.
+            </p>
+            <a href="#" style="align-self:flex-start; color:#fff; font-weight:600; font-size:14px; border-bottom:2px solid rgba(255,255,255,0.4); padding-bottom:2px; width:fit-content;">
+              View our factories →
+            </a>
+          </div>
+        </div>
+
+        <div style="position:relative; z-index:2; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.08);">
+          <div style="background:#14171f; padding:20px 22px;">
+            <div style="font-size:26px; font-weight:800; color:#fff;">2011</div>
+            <div style="font-size:11.5px; color:rgba(255,255,255,0.5); margin-top:4px;">15 years in apparel manufacturing</div>
+          </div>
+          <div style="background:#14171f; padding:20px 22px;">
+            <div style="font-size:26px; font-weight:800; color:#fff;">13,000+</div>
+            <div style="font-size:11.5px; color:rgba(255,255,255,0.5); margin-top:4px;">Skilled workers</div>
+          </div>
+          <div style="background:#14171f; padding:20px 22px;">
+            <div style="font-size:26px; font-weight:800; color:#fff;">3 Countries</div>
+            <div style="font-size:11.5px; color:rgba(255,255,255,0.5); margin-top:4px;">Korea · Japan · Vietnam</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="dv-next">Try next: "3a를 실제 사이트에 적용해줘" · "오버레이를 더 밝게" · "다른 느낌의 영상으로 다시 생성"</p>
+</section>
 
 <section class="dv-turn" id="t2">
   <div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Young &amp; trendy, blue accent — first screen only</span></div>
@@ -261,5 +320,23 @@
 </section>
 ]]>
 </x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  heroVideoRef = React.createRef();
+
+  componentDidMount() {
+    const v = this.heroVideoRef.current;
+    if (v) {
+      v.muted = true;
+      v.loop = true;
+      v.play().catch(() => {});
+    }
+  }
+
+  renderVals() {
+    return { heroVideoRef: this.heroVideoRef };
+  }
+}
+</script>
 </body>
 </html>

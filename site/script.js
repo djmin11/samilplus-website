@@ -132,6 +132,14 @@
     input.addEventListener('input', function () { setNote('', false); });
   });
 
+  /* ---------- Hero background video ---------- */
+  var heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    heroVideo.muted = true;
+    var p = heroVideo.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
   /* ---------- Scroll reveal, donut fill, hero word entrance ---------- */
   if (reducedMotion) return;
 
@@ -171,6 +179,21 @@
       });
     }, { threshold: 0.4 });
     document.querySelectorAll('.donut').forEach(function (el) { ioDonut.observe(el); });
+
+    var certGrid = document.querySelector('.cert-grid');
+    if (certGrid) {
+      var badges = certGrid.querySelectorAll('.cert-badge');
+      badges.forEach(function (el) { el.classList.add('cert-pending'); });
+      var ioCerts = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            badges.forEach(function (el) { el.classList.remove('cert-pending'); });
+            ioCerts.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      ioCerts.observe(certGrid);
+    }
 
     var wordIdx = 0;
     var wrapWords = function (node) {

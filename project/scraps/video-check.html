@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+video{width:100vw;height:100vh;object-fit:contain}
+</style></head><body>
+<video id="v" src="https://d8j0ntlcm91z4.cloudfront.net/user_3GCq7OUmdcYj0vkkzmPKxxTXgZm/hf_20260710_005435_1536cb55-fd0e-4838-ae1e-7d9688feaf6a.mp4" crossorigin="anonymous" muted playsinline preload="auto"></video>
+<script>
+window.seekTo = (t) => new Promise((res) => {
+  const v = document.getElementById('v');
+  v.onseeked = () => res(t);
+  v.currentTime = t;
+});
+</script>
+</body></html>

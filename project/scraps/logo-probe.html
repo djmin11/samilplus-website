@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+body{font-family:monospace;background:#fff;margin:0;padding:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.c{border:1px solid #ccc;padding:6px;height:170px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;overflow:hidden}
+.c img{max-width:100%;max-height:125px;object-fit:contain}
+.lbl{font-size:11px;text-align:center}
+</style></head><body>
+<script>
+const w = (u) => 'https://wsrv.nl/?url=' + encodeURIComponent(u) + '&w=800&output=png';
+const cands = [
+  ['oeko1', w('https://images.seeklogo.com/logo-png/45/1/oeko-tex-standard-100-logo-png_seeklogo-458234.png')],
+  ['oeko2', w('https://images.seeklogo.com/logo-png/45/2/oeko-tex-standard-100-logo-png_seeklogo-458234.png')],
+  ['bw1', w('https://images.seeklogo.com/logo-png/38/1/better-work-logo-png_seeklogo-386625.png')],
+  ['bw2', w('https://images.seeklogo.com/logo-png/38/2/better-work-logo-png_seeklogo-386625.png')],
+  ['grs1', w('https://images.seeklogo.com/logo-png/39/1/global-recycled-standard-logo-png_seeklogo-399819.png')],
+  ['grs2', w('https://images.seeklogo.com/logo-png/39/2/global-recycled-standard-logo-png_seeklogo-399819.png')],
+  ['wrap1', w('https://images.seeklogo.com/logo-png/61/1/wrap-logo-png_seeklogo-617090.png')],
+  ['wrap2', w('https://images.seeklogo.com/logo-png/61/2/wrap-logo-png_seeklogo-617090.png')],
+  ['higg1', w('https://images.seeklogo.com/logo-png/43/1/higg-index-logo-png_seeklogo-438789.png')],
+  ['higg2', w('https://images.seeklogo.com/logo-png/43/2/higg-index-logo-png_seeklogo-438789.png')],
+  ['bci-wiki', w('https://commons.wikimedia.org/wiki/Special:FilePath/Better_Cotton_Initiative_logo.svg')],
+  ['bci1', w('https://images.seeklogo.com/logo-png/34/1/bci-better-cotton-initiative-logo-png_seeklogo-341258.png')],
+  ['bci2', w('https://images.seeklogo.com/logo-png/34/2/bci-better-cotton-initiative-logo-png_seeklogo-341258.png')],
+  ['rds-local', '../assets/certs/rds.png']
+];
+for (const [name,url] of cands) {
+  const d = document.createElement('div'); d.className='c';
+  const img = document.createElement('img');
+  const l = document.createElement('div'); l.className='lbl'; l.textContent = name + ' …';
+  img.onload = () => { l.textContent = name + ' OK ' + img.naturalWidth + 'x' + img.naturalHeight; };
+  img.onerror = () => { l.textContent = name + ' FAILED'; d.style.background='#fdd'; };
+  img.src = url;
+  d.appendChild(img); d.appendChild(l);
+  document.body.appendChild(d);
+}
+</script>
+</body></html>

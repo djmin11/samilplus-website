@@ -209,20 +209,33 @@ section, footer.contact-footer {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding: clamp(56px,8vw,104px) var(--pad-section-x) clamp(48px,6vw,80px);
+  padding: 0;
   overflow: hidden;
 }
 
-.hero-blob {
+.hero-video {
   position: absolute;
-  top: -140px;
-  right: -120px;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.08;
-  pointer-events: none;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,12,17,0.4) 0%, rgba(10,12,17,0.62) 55%, rgba(10,12,17,0.93) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(56px,8vw,104px) var(--pad-section-x) clamp(48px,6vw,80px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
 }
 
 .badge-pill {
@@ -231,8 +244,9 @@ section, footer.contact-footer {
   width: fit-content;
   align-items: center;
   gap: 8px;
-  background: rgba(20,23,31,0.06);
-  color: rgba(20,23,31,0.6);
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(6px);
+  color: rgba(255,255,255,0.85);
   font-size: 14.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -247,7 +261,8 @@ section, footer.contact-footer {
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em;
-  max-width: 760px;
+  max-width: 600px;
+  color: #fff;
 }
 
 .accent-text { color: var(--accent); }
@@ -266,7 +281,7 @@ section, footer.contact-footer {
   max-width: 460px;
   font-size: 17.5px;
   line-height: 1.7;
-  color: rgba(20,23,31,0.6);
+  color: rgba(255,255,255,0.75);
 }
 
 .hero-actions { display: flex; gap: 12px; align-items: center; }
@@ -288,10 +303,10 @@ section, footer.contact-footer {
 .btn-primary:hover { background: var(--accent-dark); color: #fff; }
 
 .link-underline {
-  color: var(--ink);
+  color: #fff;
   font-weight: 600;
   font-size: 16px;
-  border-bottom: 2px solid rgba(20,23,31,0.25);
+  border-bottom: 2px solid rgba(255,255,255,0.4);
   padding-bottom: 2px;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
@@ -302,15 +317,19 @@ section, footer.contact-footer {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 1px;
-  background: rgba(20,23,31,0.08);
+  background: rgba(255,255,255,0.12);
   border-radius: var(--card-radius);
   overflow: hidden;
   margin-top: 16px;
 }
 
-.stat-item { background: var(--page-bg); padding: 22px 24px; }
-.stat-value { font-size: clamp(24px,3vw,34px); font-weight: 800; }
-.stat-label { font-size: 15.5px; color: rgba(20,23,31,0.5); margin-top: 6px; }
+.stat-item {
+  background: rgba(20,23,31,0.55);
+  backdrop-filter: blur(8px);
+  padding: 22px 24px;
+}
+.stat-value { font-size: clamp(24px,3vw,34px); font-weight: 800; color: #fff; }
+.stat-label { font-size: 15.5px; color: rgba(255,255,255,0.6); margin-top: 6px; }
 
 /* ---------- Catalog ---------- */
 .catalog-card {
@@ -775,6 +794,40 @@ section, footer.contact-footer {
 .footer-col-text { font-size: 16px; color: var(--footer-text-75); }
 
 .footer-copy { font-size: 14.5px; color: var(--footer-text-30); }
+
+/* ---------- Certifications ---------- */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: var(--gap-md);
+}
+.cert-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  border: var(--card-border);
+  border-radius: var(--card-radius-inner);
+  padding: 28px 20px;
+  box-sizing: border-box;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.cert-badge:nth-child(2) { transition-delay: 0.05s; }
+.cert-badge:nth-child(3) { transition-delay: 0.1s; }
+.cert-badge:nth-child(4) { transition-delay: 0.15s; }
+.cert-badge:nth-child(5) { transition-delay: 0.2s; }
+.cert-badge:nth-child(6) { transition-delay: 0.25s; }
+.cert-badge:nth-child(7) { transition-delay: 0.3s; }
+.cert-badge.cert-pending { opacity: 0; transform: translateY(16px); }
+.cert-badge img { max-width: 100%; height: 76px; object-fit: contain; }
+.cert-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(20,23,31,0.7);
+  text-align: center;
+  line-height: 1.35;
+}
 
 /* ---------- Modals ---------- */
 .modal-backdrop {

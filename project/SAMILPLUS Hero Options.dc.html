@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+body{margin:0;background:#eceef1;font-family:'Pretendard',system-ui,sans-serif}
+.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#14171f;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 14px/1.2 'Pretendard',sans-serif;color:#14171f}
+.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#14171f;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 12px/1.3 'Pretendard',sans-serif;color:rgba(20,23,31,.6)}
+.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden}
+.dv-opt:target .dv-oid{background:#3879CE;color:#fff}
+.dv-next{margin:22px 0 0;font:13px/1.6 'Pretendard',sans-serif;color:rgba(20,23,31,.55)}
+.ph{position:relative;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg, rgba(20,23,31,0.08) 0px, rgba(20,23,31,0.08) 2px, rgba(20,23,31,0.03) 2px, rgba(20,23,31,0.03) 14px);color:rgba(20,23,31,0.45);font:600 12px/1.4 ui-monospace,Menlo,monospace;text-align:center;letter-spacing:0.02em;padding:8px}
+.ph-dark{background:repeating-linear-gradient(135deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 14px);color:rgba(255,255,255,0.55)}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t2">
+  <div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">추가 콘텐츠 섹션 제안 — 신규 아이디어</span></div>
+  <div class="dv-opts">
+
+    <!-- 2a Process timeline -->
+    <div class="dv-opt" id="2a">
+      <div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>생산 프로세스 (소싱→샘플→생산→QA→선적)</div>
+      <div class="dv-card" style="width:640px; padding:40px 36px; box-sizing:border-box; font-family:'Pretendard',sans-serif;">
+        <div style="font-size:14px; font-weight:700; color:rgba(20,23,31,0.45); letter-spacing:0.06em; margin-bottom:8px;">OUR PROCESS</div>
+        <div style="font-size:26px; font-weight:800; letter-spacing:-0.02em; color:#14171f; margin-bottom:28px;">아이디어에서 선적까지</div>
+        <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative;">
+          <div style="position:absolute; top:19px; left:10%; right:10%; height:2px; background:rgba(20,23,31,0.12);"></div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:14px; position:relative;">
+            <div style="width:40px; height:40px; border-radius:50%; background:#3879CE; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;">01</div>
+            <div style="font-size:13.5px; font-weight:700; color:#14171f; text-align:center;">Sourcing</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:14px; position:relative;">
+            <div style="width:40px; height:40px; border-radius:50%; background:#fff; border:2px solid rgba(20,23,31,0.15); color:#14171f; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;">02</div>
+            <div style="font-size:13.5px; font-weight:700; color:#14171f; text-align:center;">Sampling</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:14px; position:relative;">
+            <div style="width:40px; height:40px; border-radius:50%; background:#fff; border:2px solid rgba(20,23,31,0.15); color:#14171f; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;">03</div>
+            <div style="font-size:13.5px; font-weight:700; color:#14171f; text-align:center;">Production</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:14px; position:relative;">
+            <div style="width:40px; height:40px; border-radius:50%; background:#fff; border:2px solid rgba(20,23,31,0.15); color:#14171f; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;">04</div>
+            <div style="font-size:13.5px; font-weight:700; color:#14171f; text-align:center;">QA</div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:14px; position:relative;">
+            <div style="width:40px; height:40px; border-radius:50%; background:#fff; border:2px solid rgba(20,23,31,0.15); color:#14171f; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px;">05</div>
+            <div style="font-size:13.5px; font-weight:700; color:#14171f; text-align:center;">Shipping</div>
+          </div>
+        </div>
+        <div style="margin-top:20px; font-size:13px; color:rgba(20,23,31,0.45); font-family:ui-monospace,Menlo,monospace;">스크롤 시 좌→우로 라인이 채워지는 애니메이션 적용 가능</div>
+      </div>
+    </div>
+
+    <!-- 2b Certifications strip -->
+    <div class="dv-opt" id="2b">
+      <div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>품질/인증 스트립 (다크 밴드)</div>
+      <div class="dv-card" style="width:640px; background:#14171f; padding:36px; box-sizing:border-box; font-family:'Pretendard',sans-serif;">
+        <div style="font-size:14px; font-weight:700; color:rgba(245,246,248,0.45); letter-spacing:0.06em; margin-bottom:18px;">QUALITY &amp; COMPLIANCE</div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+          <div class="ph ph-dark" style="height:64px; border-radius:12px;">GORETEX</div>
+          <div class="ph ph-dark" style="height:64px; border-radius:12px;">ISO 9001</div>
+          <div class="ph ph-dark" style="height:64px; border-radius:12px;">WRAP</div>
+          <div class="ph ph-dark" style="height:64px; border-radius:12px;">OEKO-TEX</div>
+        </div>
+        <div style="margin-top:16px; font-size:13px; color:rgba(245,246,248,0.4); font-family:ui-monospace,Menlo,monospace;">실제 보유 인증 로고로 교체 필요 — 어떤 인증을 보유하고 계신가요?</div>
+      </div>
+    </div>
+
+  </div>
+  <p class="dv-next">다음 시도: "<a class="dv-oid" href="#2a">2a</a> 채택해서 About 섹션 뒤에 추가해줘" · "<a class="dv-oid" href="#2b">2b</a>는 어떤 인증 있는지 알려줄게" · "둘 다 필요없어"</p>
+</section>
+
+<section class="dv-turn" id="t1">
+  <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">히어로 방향 4가지</span></div>
+  <div class="dv-opts">
+
+    <!-- 1a Video hero -->
+    <div class="dv-opt" id="1a">
+      <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>공장 투어 영상 배경 히어로 (보유한 실제 영상 활용)</div>
+      <div class="dv-card" style="width:640px; height:420px;">
+        <div style="position:relative; width:100%; height:100%; background:#0d0f14;">
+          <div class="ph ph-dark" style="position:absolute; inset:0;">TIENHUNG FACTORY TOUR — MUTED LOOP VIDEO</div>
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,15,20,0.55) 0%, rgba(13,15,20,0.25) 40%, rgba(13,15,20,0.85) 100%);"></div>
+          <div style="position:absolute; top:24px; left:28px; display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.12); backdrop-filter:blur(6px); color:#fff; font-size:12.5px; font-weight:700; letter-spacing:0.04em; padding:6px 12px; border-radius:999px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:#3879CE;"></span> LIVE FROM OUR FACTORY FLOOR
+          </div>
+          <div style="position:absolute; left:28px; right:28px; bottom:28px;">
+            <h1 style="margin:0 0 12px; font-size:34px; font-weight:800; line-height:1.08; letter-spacing:-0.02em; color:#fff;">The partner behind<br><span style="color:#6fa3e6;">the brands you trust</span></h1>
+            <div style="display:flex; gap:20px; font-size:13.5px; color:rgba(255,255,255,0.7); font-weight:600;">
+              <span>2011 설립</span><span>13,000+ 인력</span><span>3개국 네트워크</span>
+            </div>
+          </div>
+          <div style="position:absolute; right:28px; bottom:28px; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center;">
+            <span style="width:0; height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; border-left:9px solid #fff; margin-left:2px;"></span>
+          </div>
+        </div>
+      </div>
+      <div class="dv-olabel" style="font-family:ui-monospace,Menlo,monospace; font-size:11.5px;">공장 투어 영상 3편 이미 보유 — 재생 시 스크롤 아래로 자연스럽게 이어짐. 소리 없이 무한 루프.</div>
+    </div>
+
+    <!-- 1b Full-bleed photo hero -->
+    <div class="dv-opt" id="1b">
+      <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>풀블리드 프로덕트 포토 히어로</div>
+      <div class="dv-card" style="width:640px; height:420px;">
+        <div style="position:relative; width:100%; height:100%; background:#f5f6f8; display:grid; grid-template-columns:1fr 1fr;">
+          <div style="display:flex; flex-direction:column; justify-content:center; gap:16px; padding:36px 8px 36px 36px;">
+            <div style="font-size:13px; font-weight:700; letter-spacing:0.06em; color:rgba(20,23,31,0.45);">EST. 2011 · KOREA · JAPAN · VIETNAM</div>
+            <h1 style="margin:0; font-size:32px; font-weight:800; line-height:1.1; letter-spacing:-0.02em; color:#14171f;">Good clothes,<br>made with<br><span style="color:#3879CE;">good hands</span></h1>
+            <p style="margin:0; font-size:14px; color:rgba(20,23,31,0.6); line-height:1.6; max-width:220px;">15년간 글로벌 스포츠·아웃도어 브랜드와 함께해온 제조 파트너.</p>
+          </div>
+          <div class="ph" style="position:relative;">ACTUAL PRODUCT / GARMENT PHOTOGRAPHY<br>(세로형, 인물 착용 컷)</div>
+        </div>
+      </div>
+      <div class="dv-olabel" style="font-family:ui-monospace,Menlo,monospace; font-size:11.5px;">Dolenga 등 레퍼런스 스타일 — 실사진 필요 (착용 컷 또는 제품 클로즈업)</div>
+    </div>
+
+    <!-- 1c Editorial split dark hero -->
+    <div class="dv-opt" id="1c">
+      <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>에디토리얼 스플릿 히어로 (다크 패널 + 사진)</div>
+      <div class="dv-card" style="width:640px; height:420px;">
+        <div style="position:relative; width:100%; height:100%; display:grid; grid-template-columns:1.1fr 1fr;">
+          <div style="background:#14171f; display:flex; flex-direction:column; justify-content:center; gap:18px; padding:40px;">
+            <div style="width:44px; height:4px; border-radius:2px; background:#3879CE;"></div>
+            <div style="font-size:12.5px; font-weight:700; letter-spacing:0.1em; color:rgba(245,246,248,0.5);">GLOBAL MANUFACTURING PARTNER</div>
+            <h1 style="margin:0; font-size:30px; font-weight:800; line-height:1.05; letter-spacing:-0.03em; color:#f5f6f8; text-transform:uppercase;">Good clothes come from good partnerships</h1>
+            <div style="display:flex; gap:6px; margin-top:6px;">
+              <div style="background:rgba(245,246,248,0.08); border-radius:999px; padding:8px 16px; font-size:13px; font-weight:700; color:#fff;">공장 보기 →</div>
+            </div>
+          </div>
+          <div class="ph ph-dark" style="background-color:#0d0f14;">FACTORY FLOOR / SEWING LINE PHOTOGRAPHY</div>
+        </div>
+      </div>
+      <div class="dv-olabel" style="font-family:ui-monospace,Menlo,monospace; font-size:11.5px;">기존 &quot;Bold&quot; 무드 톤 재활용 — 실사진 필요 (생산 라인 와이드샷)</div>
+    </div>
+
+    <!-- 1d Enhanced data/map hero -->
+    <div class="dv-opt" id="1d">
+      <div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>데이터·지도 강화형 (사진 없이, 현재 방향 보강)</div>
+      <div class="dv-card" style="width:640px; height:420px;">
+        <div style="position:relative; width:100%; height:100%; background:#f5f6f8; padding:40px; box-sizing:border-box; overflow:hidden;">
+          <svg viewBox="0 0 640 340" style="position:absolute; right:-60px; top:20px; width:420px; height:224px; opacity:0.5;">
+            <path d="M40 180 Q 200 40 380 120 T 600 90" fill="none" stroke="#3879CE" stroke-width="1.5" stroke-dasharray="4 5"></path>
+            <circle cx="40" cy="180" r="4" fill="#3879CE"></circle>
+            <circle cx="380" cy="120" r="4" fill="#3879CE"></circle>
+            <circle cx="600" cy="90" r="4" fill="#3879CE"></circle>
+          </svg>
+          <div style="position:relative; display:inline-flex; align-items:center; gap:8px; background:rgba(20,23,31,0.06); color:rgba(20,23,31,0.6); font-size:13px; font-weight:700; letter-spacing:0.04em; padding:7px 14px; border-radius:999px; margin-bottom:20px;">EST. 2011 · KOREA · JAPAN · VIETNAM</div>
+          <h1 style="position:relative; margin:0 0 24px; font-size:36px; font-weight:800; line-height:1.08; letter-spacing:-0.03em; color:#14171f; max-width:420px;">The partner behind <span style="color:#3879CE;">the brands you trust</span></h1>
+          <div style="position:relative; display:flex; align-items:center; gap:14px; background:#fff; border:1px solid rgba(20,23,31,0.1); border-radius:16px; padding:12px 16px; width:fit-content;">
+            <div class="ph" style="width:56px; height:56px; border-radius:10px; font-size:9px;">VIDEO<br>THUMB</div>
+            <div>
+              <div style="font-size:13.5px; font-weight:700; color:#14171f;">공장 투어 영상 보기</div>
+              <div style="font-size:12px; color:rgba(20,23,31,0.5);">TIENHUNG · 60개 생산라인</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dv-olabel" style="font-family:ui-monospace,Menlo,monospace; font-size:11.5px;">실사진 없이도 가능. 헤드라인 뒤 지도 라인 애니메이션 + 영상 썸네일 카드로 깊이감 추가</div>
+    </div>
+
+  </div>
+  <p class="dv-next">다음 시도: "<a class="dv-oid" href="#1a">1a</a> 채택해서 적용해줘" · "<a class="dv-oid" href="#1d">1d</a>처럼 사진 없이 가고 싶어" · "<a class="dv-oid" href="#1c">1c</a>랑 <a class="dv-oid" href="#1a">1a</a> 섞어줘"</p>
+</section>
+
+</x-dc>
+</body>
+</html>
