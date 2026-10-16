@@ -382,6 +382,9 @@ section, footer.contact-footer {
 #req-email { flex: 1.2; min-width: 160px; }
 
 .btn-request {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
   border: none;
   background: var(--accent);
   color: #fff;
@@ -394,7 +397,7 @@ section, footer.contact-footer {
   white-space: nowrap;
   transition: background 0.15s ease;
 }
-.btn-request:hover { background: var(--accent-dark); }
+.btn-request:hover { background: var(--accent-dark); color: #fff; }
 
 .catalog-form-note {
   font-size: 14.5px;

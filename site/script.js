@@ -94,44 +94,6 @@
     }
   });
 
-  /* ---------- Catalog request form ---------- */
-  var reqCompany = document.getElementById('req-company');
-  var reqEmail = document.getElementById('req-email');
-  var reqNote = document.querySelector('.catalog-form-note');
-
-  function setNote(text, isError) {
-    reqNote.textContent = text;
-    reqNote.classList.toggle('is-error', Boolean(isError));
-  }
-
-  function requestCatalog() {
-    var company = reqCompany.value.trim();
-    var email = reqEmail.value.trim();
-    if (!company) {
-      setNote('Please enter your company name.', true);
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setNote('Please enter a valid email address.', true);
-      return;
-    }
-    var subject = encodeURIComponent('Catalog Request - ' + company);
-    var body = encodeURIComponent(
-      'Hello SAMIL PLUS,\n\nI would like to request your apparel catalog.\n\nCompany: ' + company +
-      '\nEmail: ' + email + '\n\nThank you.'
-    );
-    window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
-    setNote("Your mail app should open — just hit send. Or email us directly at " + CONTACT_EMAIL, false);
-  }
-
-  document.querySelector('.btn-request').addEventListener('click', requestCatalog);
-  [reqCompany, reqEmail].forEach(function (input) {
-    input.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') requestCatalog();
-    });
-    input.addEventListener('input', function () { setNote('', false); });
-  });
-
   /* ---------- Hero background video ---------- */
   var heroVideo = document.querySelector('.hero-video');
   if (heroVideo) {
